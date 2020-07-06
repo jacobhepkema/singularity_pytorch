@@ -36,7 +36,7 @@ From: nvidia/cuda:10.0-devel
   /miniconda/bin/conda config --set ssl_verify no
   /miniconda/bin/conda env create -f environment.yml -p /miniconda/envs/$ENV_NAME
   
-  source /miniconda/etc/profile.d/conda.sh
+  . /miniconda/etc/profile.d/conda.sh
   conda activate scanem
 
 %environment
