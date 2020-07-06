@@ -37,7 +37,6 @@ From: nvidia/cuda:10.0-devel
   /miniconda/bin/conda env create -f environment.yml -p /miniconda/envs/$ENV_NAME
   
   . /miniconda/etc/profile.d/conda.sh
-  conda activate scanem
 
 %environment
   export PATH=/miniconda/bin:${PATH}
