@@ -27,10 +27,10 @@ From: nvidia/cuda:10.0-devel
   conda update -y conda
   
   ENV_NAME=$(head -1 environment.yml | cut -d' ' -f2)
-  echo ". /opt/conda/etc/profile.d/conda.sh" >> $SINGULARITY_ENVIRONMENT
+  echo ". /miniconda/etc/profile.d/conda.sh" >> $SINGULARITY_ENVIRONMENT
   echo "conda activate $ENV_NAME" >> $SINGULARITY_ENVIRONMENT
   
-  . /opt/conda/etc/profile.d/conda.sh
+  . /miniconda/etc/profile.d/conda.sh
   # create environment
   conda env create -f environment.yml -p /opt/conda/envs/$ENV_NAME
   conda activate $ENV_NAME
@@ -39,4 +39,4 @@ From: nvidia/cuda:10.0-devel
   export PATH=/miniconda/bin:${PATH}
 
 %runscript
-  exec /opt/conda/envs/$(head -n 1 environment.yml | cut -f 2 -d ' ')/bin/"$@"
+  exec /miniconda/envs/$(head -n 1 environment.yml | cut -f 2 -d ' ')/bin/"$@"
