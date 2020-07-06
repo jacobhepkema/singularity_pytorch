@@ -30,13 +30,14 @@ From: nvidia/cuda:10.0-devel
   echo ". /miniconda/etc/profile.d/conda.sh" >> $SINGULARITY_ENVIRONMENT
   echo "/miniconda/bin/conda activate $ENV_NAME" >> $SINGULARITY_ENVIRONMENT
   
-  . /miniconda/etc/profile.d/conda.sh
+  source /miniconda/etc/profile.d/conda.sh
   # create environment
-  /miniconda/bin/conda init
+
   /miniconda/bin/conda config --set ssl_verify no
   /miniconda/bin/conda env create -f environment.yml -p /miniconda/envs/$ENV_NAME
-  /miniconda/bin/conda init
-  /miniconda/bin/conda activate $ENV_NAME
+  
+  source /miniconda/etc/profile.d/conda.sh
+  conda activate scanem
 
 %environment
   export PATH=/miniconda/bin:${PATH}
