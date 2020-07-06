@@ -15,25 +15,25 @@ From: nvidia/cuda:10.0-devel
   mkdir /project /scratch
 
   #Now install everything
-  apt update && apt install -y curl 
+  apt update && apt install -y apt-utils curl 
 
   curl -LO http://repo.continuum.io/miniconda/Miniconda3-4.5.12-Linux-x86_64.sh
   bash Miniconda3-4.5.12-Linux-x86_64.sh -p /miniconda -b
   rm Miniconda3-4.5.12-Linux-x86_64.sh
   PATH=/miniconda/bin:${PATH}
   
-  apt-get install -y --no-install-recommends apt-utils build-essential make zlib1g procps
+  apt-get install -y --no-install-recommends build-essential make zlib1g procps
   
-  conda update -y conda
+  /miniconda/bin/conda update -y conda
   
   ENV_NAME=$(head -1 environment.yml | cut -d' ' -f2)
   echo ". /miniconda/etc/profile.d/conda.sh" >> $SINGULARITY_ENVIRONMENT
-  echo "conda activate $ENV_NAME" >> $SINGULARITY_ENVIRONMENT
+  echo "/miniconda/bin/conda activate $ENV_NAME" >> $SINGULARITY_ENVIRONMENT
   
   . /miniconda/etc/profile.d/conda.sh
   # create environment
-  conda env create -f environment.yml -p /opt/conda/envs/$ENV_NAME
-  conda activate $ENV_NAME
+  /miniconda/bin/conda env create -f environment.yml -p /miniconda/envs/$ENV_NAME
+  /miniconda/bin/conda activate $ENV_NAME
 
 %environment
   export PATH=/miniconda/bin:${PATH}
