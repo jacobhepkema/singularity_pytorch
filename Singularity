@@ -3,7 +3,7 @@ From: nvidia/cuda:10.0-devel
 
 # Inspired by https://github.com/natbutter/pytorch-singularity
 
-# This file contains the dependencies except for pytorch torchvision cudatoolkit=10.0
+# This file contains the dependencies
 %files
   environment.yml
   
@@ -33,9 +33,7 @@ From: nvidia/cuda:10.0-devel
   . /opt/conda/etc/profile.d/conda.sh
   # create environment
   conda env create -f environment.yml -p /opt/conda/envs/$ENV_NAME
-  
   conda activate $ENV_NAME
-  conda install -y pytorch torchvision cudatoolkit=10.0 -c pytorch
 
 %environment
   export PATH=/miniconda/bin:${PATH}
