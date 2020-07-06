@@ -33,6 +33,7 @@ From: nvidia/cuda:10.0-devel
   . /miniconda/etc/profile.d/conda.sh
   # create environment
   /miniconda/bin/conda env create -f environment.yml -p /miniconda/envs/$ENV_NAME
+  /miniconda/bin/conda init
   /miniconda/bin/conda activate $ENV_NAME
 
 %environment
