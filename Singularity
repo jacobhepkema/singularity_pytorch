@@ -8,7 +8,7 @@ From: nvidia/cuda:10.2-base-ubuntu18.04
   environment.yml
   
 %labels
-  Inspired by natbutter/pytorch-singularity
+  Inspired by natbutter/pytorch-singularity and https://gpucomputing.shef.ac.uk/education/creating_gpu_singularity/
   Maintained by jacobhepkema
 
 %post
