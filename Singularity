@@ -1,5 +1,5 @@
 Bootstrap: docker
-From: nvidia/cuda:10.0-devel
+From: nvidia/cuda:10.2-base-ubuntu18.04
 
 # Inspired by https://github.com/natbutter/pytorch-singularity
 
@@ -29,6 +29,19 @@ From: nvidia/cuda:10.0-devel
   ENV_NAME=$(head -1 environment.yml | cut -d' ' -f2)
   echo ". /miniconda/etc/profile.d/conda.sh" >> $SINGULARITY_ENVIRONMENT
   echo "/miniconda/bin/conda activate $ENV_NAME" >> $SINGULARITY_ENVIRONMENT
+  
+  #Nvidia driver file mount paths
+  mkdir /nvlib /nvbin
+
+  #Add nvidia driver paths to the environment variables
+  echo "\n #Nvidia driver paths \n" >> $SINGULARITY_ENVIRONMENT
+  echo 'export PATH="/nvbin:$PATH"' >> $SINGULARITY_ENVIRONMENT
+  echo 'export LD_LIBRARY_PATH="/nvlib:$LD_LIBRARY_PATH"' >> $SINGULARITY_ENVIRONMENT
+  
+  echo 'export CPATH="/usr/local/cuda/include:$CPATH" >> $SINGULARITY_ENVIRONMENT
+  echo 'export PATH="/usr/local/cuda/bin:$PATH" >> $SINGULARITY_ENVIRONMENT
+  echo 'export LD_LIBRARY_PATH="/usr/local/cuda/lib:$LD_LIBRARY_PATH" >> $SINGULARITY_ENVIRONMENT
+  echo 'export CUDA_HOME="/usr/local/cuda" >> $SINGULARITY_ENVIRONMENT
   
   . /miniconda/etc/profile.d/conda.sh
   # create environment
